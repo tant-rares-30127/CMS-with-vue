@@ -1,17 +1,22 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <Modal></Modal>
+  <Title></Title>
+  <SearchAddTable></SearchAddTable>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Modal from "./components/Modal.vue";
+import SearchAddTable from "./components/SearchAddTable.vue";
+import Title from "./components/Title.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    Modal,
+    Title,
+    SearchAddTable,
+  },
+};
 </script>
 
 <style>
