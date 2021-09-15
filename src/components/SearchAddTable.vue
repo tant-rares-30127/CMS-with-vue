@@ -7,7 +7,7 @@
       </div>
 
       <div class="modal-button">
-        <button class="open-modal-button" id="myBtn">
+        <button class="open-modal-button" v-on:click="openModal()">
           Add new member
         </button>
       </div>
@@ -29,6 +29,22 @@
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  methods: {
+    openModal() {
+      var modal = document.getElementById("myModal");
+      modal.style.display = "block";
+      window.onclick = function(event) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+      };
+    },
+  },
+};
+</script>
 
 <style>
 table {

@@ -3,7 +3,7 @@
     <!-- Modal content -->
     <div class="modal-content">
       <div class="close-button">
-        <span class="close">&times;</span>
+        <span class="close" v-on:click="closeModal">&times;</span>
       </div>
 
       <div class="add-first-name">
@@ -50,6 +50,17 @@
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  methods: {
+    closeModal() {
+      var modal = document.getElementById("myModal");
+      modal.style.display = "none";
+    },
+  },
+};
+</script>
 
 <style>
 .close-button {
