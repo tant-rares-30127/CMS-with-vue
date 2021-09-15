@@ -3,3 +3,11 @@
     <h1>CMS Made by Tant Rares</h1>
   </div>
 </template>
+
+<style>
+.title {
+  display: flex;
+  justify-content: center;
+  padding: 1%;
+}
+</style>
