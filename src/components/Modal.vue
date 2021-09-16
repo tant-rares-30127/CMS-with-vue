@@ -43,7 +43,7 @@
       </div>
 
       <div class="add-button-div">
-        <button class="add-button" id="addButton">
+        <button class="add-button" v-on:click="getData">
           Add
         </button>
       </div>
@@ -52,11 +52,70 @@
 </template>
 
 <script>
+import axios from "axios";
+
+function RefactorDate(day, month, year) {
+  var namedMonth;
+  if (month == 1) namedMonth = " January ";
+  if (month == 2) namedMonth = " February ";
+  if (month == 3) namedMonth = " March ";
+  if (month == 4) namedMonth = " April ";
+  if (month == 5) namedMonth = " May ";
+  if (month == 6) namedMonth = " June ";
+  if (month == 7) namedMonth = " July ";
+  if (month == 8) namedMonth = " August ";
+  if (month == 9) namedMonth = " September ";
+  if (month == 10) namedMonth = " October ";
+  if (month == 11) namedMonth = " November ";
+  if (month == 12) namedMonth = " December ";
+  return day + namedMonth + year;
+}
+
 export default {
   methods: {
     closeModal() {
       var modal = document.getElementById("myModal");
       modal.style.display = "none";
+    },
+    getData() {
+      axios
+        .get("https://localhost:44364/Home/GetTeam")
+        .then(function(response) {
+          return response.data.memberList;
+        })
+        .catch(function(error) {
+          console.log(error);
+        })
+        .then(function(data) {
+          for (var i = 0; i < data.length; i++) {
+            console.log(data);
+            var lastName = data[i].lastName;
+            var firstName = data[i].firstName;
+            var email = data[i].email;
+            var sex = data[i].sex;
+            var unixDate = data[i].birthdate;
+            var date = new Date(unixDate * 1000);
+            var year = date.getFullYear();
+            var month = date.getMonth() + 1;
+            var day = date.getDate();
+            var table = document.getElementById("table");
+            var row = table.insertRow();
+            row.className = "bottom-row";
+            var cell1 = row.insertCell(0);
+            var cell2 = row.insertCell(1);
+            var cell3 = row.insertCell(2);
+            var cell4 = row.insertCell(3);
+            var cell5 = row.insertCell(4);
+            var cell6 = row.insertCell(5);
+            cell1.innerHTML = firstName;
+            cell2.innerHTML = lastName;
+            cell3.innerHTML = email;
+            cell4.innerHTML = sex;
+            cell5.innerHTML = RefactorDate(day, month, year);
+            cell6.innerHTML =
+              '<span class="delete-button fa fa-remove" id="deleteButton">';
+          }
+        });
     },
   },
 };
