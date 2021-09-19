@@ -2,8 +2,8 @@
   <div class="search-add-table">
     <div class="add-search">
       <div class="input-border">
-        <input type="search" class="member-search-bar" id="searchBar" />
-        <span class="search-icon fa fa-search" id="searchIcon"></span>
+        <input type="search" class="member-search-bar" v-model="searchInput" />
+        <span class="search-icon fa fa-search" v-on:click="searchMember"></span>
       </div>
 
       <div class="modal-button">
@@ -53,6 +53,7 @@ export default {
   data() {
     return {
       inputs: [],
+      searchInput: "",
     };
   },
   methods: {
@@ -82,6 +83,19 @@ export default {
       console.log(id);
       axios.delete(`https://localhost:44380/Home/DeleteMember?id=${id}`);
       location.reload();
+    },
+    searchMember() {
+      axios
+        .get(`https://localhost:44380/Home/FindMember?name=${this.searchInput}`)
+        .then((response) => {
+          return response.data;
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+        .then((data) => {
+          this.inputs = data;
+        });
     },
     RefactorDate(unixDate) {
       var date = new Date(unixDate * 1000);
