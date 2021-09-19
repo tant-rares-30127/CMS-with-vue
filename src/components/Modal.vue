@@ -8,22 +8,22 @@
 
       <div class="add-first-name">
         <label class="label">First name: </label>
-        <input type="search" class="search-bar" id="firstNameInput" />
+        <input type="search" class="search-bar" v-model="firstNameInput" />
       </div>
 
       <div class="add-last-name">
         <label class="label">Last name: </label>
-        <input type="search" class="search-bar" id="lastNameInput" />
+        <input type="search" class="search-bar" v-model="lastNameInput" />
       </div>
 
       <div class="add-email">
         <label class="label">Email: </label>
-        <input type="search" class="search-bar" id="emailInput" />
+        <input type="search" class="search-bar" v-model="emailInput" />
       </div>
 
       <div class="add-sex">
         <label class="label">Sex: </label>
-        <select class="sex-dropdown" id="sexInput">
+        <select class="sex-dropdown" v-model="sexInput">
           <option value="" selected hidden>Choose sex</option>
           <option value="Male">Male</option>
           <option value="Female">Female</option>
@@ -38,12 +38,12 @@
           name="birthdate"
           placeholder="Select birthdate"
           class="birth-picker"
-          id="birthdateInput"
+          v-model="birthdateInput"
         />
       </div>
 
       <div class="add-button-div">
-        <button class="add-button">
+        <button class="add-button" @click="addMember">
           Add
         </button>
       </div>
@@ -52,11 +52,31 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
+  data() {
+    return {
+      firstNameInput: "",
+      lastNameInput: "",
+      emailInput: "",
+      sexInput: "",
+      birthdateInput: new Date(2018, 8, 1),
+    };
+  },
   methods: {
     closeModal() {
       var modal = document.getElementById("myModal");
       modal.style.display = "none";
+    },
+    addMember() {
+      var unixBirthdate = Math.round(
+        new Date(this.birthdateInput).getTime() / 1000
+      );
+      axios.post(
+        "https://localhost:44380/Home/AddMember",
+        `firstName=${this.firstNameInput}&lastName=${this.lastNameInput}&email=${this.emailInput}&sex=${this.sexInput}&birthdate=${unixBirthdate}`
+      );
     },
   },
 };

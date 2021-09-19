@@ -7,7 +7,7 @@
       </div>
 
       <div class="modal-button">
-        <button class="open-modal-button" v-on:click="openModal()">
+        <button class="open-modal-button" v-on:click="openModal">
           Add new member
         </button>
       </div>
@@ -61,7 +61,7 @@ export default {
     },
     getData() {
       axios
-        .get("https://localhost:44364/Home/GetTeam")
+        .get("https://localhost:44380/Home/GetTeam")
         .then((response) => {
           return response.data.memberList;
         })
