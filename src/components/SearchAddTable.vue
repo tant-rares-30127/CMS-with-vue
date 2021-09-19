@@ -81,6 +81,7 @@ export default {
     deleteMember(id) {
       console.log(id);
       axios.delete(`https://localhost:44380/Home/DeleteMember?id=${id}`);
+      location.reload();
     },
     RefactorDate(unixDate) {
       var date = new Date(unixDate * 1000);

@@ -77,6 +77,7 @@ export default {
         "https://localhost:44380/Home/AddMember",
         `firstName=${this.firstNameInput}&lastName=${this.lastNameInput}&email=${this.emailInput}&sex=${this.sexInput}&birthdate=${unixBirthdate}`
       );
+      location.reload();
     },
   },
 };
