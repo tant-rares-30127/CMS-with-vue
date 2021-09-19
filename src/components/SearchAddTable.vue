@@ -32,7 +32,13 @@
             <td>{{ input.email }}</td>
             <td>{{ input.sex }}</td>
             <td>{{ RefactorDate(input.birthdate) }}</td>
-            <td><span class="delete-button fa fa-remove"> </span></td>
+            <td>
+              <span
+                class="delete-button fa fa-remove"
+                v-on:click="deleteMember(input.id)"
+              >
+              </span>
+            </td>
           </tr>
         </tbody>
       </table>
@@ -63,7 +69,7 @@ export default {
       axios
         .get("https://localhost:44380/Home/GetTeam")
         .then((response) => {
-          return response.data.memberList;
+          return response.data;
         })
         .catch((error) => {
           console.log(error);
@@ -71,6 +77,10 @@ export default {
         .then((data) => {
           this.inputs = data;
         });
+    },
+    deleteMember(id) {
+      console.log(id);
+      axios.delete(`https://localhost:44380/Home/DeleteMember?id=${id}`);
     },
     RefactorDate(unixDate) {
       var date = new Date(unixDate * 1000);
