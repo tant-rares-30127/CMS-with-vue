@@ -9,5 +9,6 @@
   display: flex;
   justify-content: center;
   padding: 1%;
+  margin-bottom: 3rem;
 }
 </style>

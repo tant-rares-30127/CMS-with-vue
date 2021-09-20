@@ -87,4 +87,12 @@ export default {
     width: 50%;
   }
 }
+
+@media (max-width: 575px) {
+  .add-search {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
 </style>

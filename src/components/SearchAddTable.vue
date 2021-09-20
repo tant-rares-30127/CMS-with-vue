@@ -126,7 +126,7 @@ export default {
 
 <style>
 table {
-  width: 70rem;
+  width: 100%;
 }
 
 table,
@@ -144,12 +144,8 @@ td {
 
 .add-search {
   display: flex;
-  justify-content: center;
-  gap: 37rem;
-  padding-top: 2rem;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
-  padding-bottom: 0.1rem;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .modal-button {
@@ -199,11 +195,15 @@ td {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin-left: 1rem;
+  margin-right: 1rem;
 }
 
 .members-table {
   display: flex;
   justify-content: center;
+  width: 100%;
+  margin-top: 0.15rem;
 }
 
 .top-row {
